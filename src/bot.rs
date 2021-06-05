@@ -11,7 +11,6 @@ use serenity::{
     },
 };
 use std::collections::HashMap;
-use std::sync::Once;
 
 pub async fn run(
     client: &Http,
@@ -163,16 +162,6 @@ async fn delete_messages(
     }
     Ok(message_ids.len() as u64)
 }
-
-static INIT: Once = Once::new();
-
-/// Setup function that is only run once, even if called multiple times.
-fn setup_logger() {
-    INIT.call_once(|| {
-        env_logger::init();
-    });
-}
-
 #[cfg(test)]
 mod tests {
     use chrono::Duration;
@@ -193,6 +182,7 @@ mod tests {
 
     static INIT: Once = Once::new();
 
+    /// Setup function that is only run once, even if called multiple times.
     fn setup_logger() {
         INIT.call_once(|| {
             env_logger::init();
