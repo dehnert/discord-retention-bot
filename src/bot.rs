@@ -101,6 +101,7 @@ async fn process_channel(
     max_age: Duration,
     delete_pinned: bool,
 ) -> Result<u64> {
+    info!("Processing channel {}", channel.name);
     let mut deletion_count = 0;
 
     let first_batch = client
