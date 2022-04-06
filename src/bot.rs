@@ -118,6 +118,7 @@ async fn process_channel(
 
     let mut oldest_msg_id = first_batch.last().map(|msg| *msg.id.as_u64());
     while let Some(before_msg_id) = oldest_msg_id {
+        info!("Starting batch before={}", before_msg_id);
         let batch = client
             .get_messages(
                 *channel.id.as_u64(),
